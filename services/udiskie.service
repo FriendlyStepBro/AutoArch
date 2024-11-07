@@ -1,0 +1,11 @@
+[Unit]
+Description=Udiskie Automounter
+After=udisks2.service
+
+[Service]
+ExecStart=/usr/bin/udiskie --no-automount
+Restart=on-failure
+User=fsb
+
+[Install]
+WantedBy=default.target

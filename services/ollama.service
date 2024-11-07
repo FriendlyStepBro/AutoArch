@@ -1,0 +1,12 @@
+[Unit]
+Description=Ollama Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/ollama serve
+Restart=always
+User=fsb
+WorkingDirectory=/home/fsb
+
+[Install]
+WantedBy=multi-user.target
