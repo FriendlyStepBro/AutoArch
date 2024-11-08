@@ -1,0 +1,30 @@
+#!/bin/bash
+
+export HISTFILESIZE=0
+
+clear
+#--Check if neofetch is installed and run it
+if [ -z "$TERMINAL_LAUNCHED" ]; then
+    TERMINAL_LAUNCHED=true
+    if type -P neofetch &> /dev/null; then
+        if [ -z "$TMUX" ]; then
+            neofetch
+        fi
+    else
+        echo "Error: NeoFetch not installed."
+    fi
+fi
+
+#--Check if Oh-My-Posh is installed and run it
+if type -P oh-my-posh &> /dev/null; then
+	eval "$(oh-my-posh init bash --config /home/fsb/.config/oh-my-posh/atomic.omp.json)"
+else
+	echo "Error: Oh-My-Posh not installed."
+fi
+
+#--Check if fzf and bat installed
+if type -P fzf &> /dev/null; then
+	eval "$(fzf --bash)"
+else
+	echo "Error: FZF not installed."
+fi

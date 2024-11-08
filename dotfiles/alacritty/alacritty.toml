@@ -1,0 +1,39 @@
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "buttonless"
+dynamic_padding = false
+opacity = 0.84
+
+[window.padding]
+x = 5
+y = 5
+
+[font]
+size = 13
+
+[font.bold]
+family = "Jet Brains Mono Nerd Font"
+style = "Heavy"
+
+[font.bold_italic]
+
+family = "Jet Brains Mono Nerd Font"
+style = "Heavy Italic"
+
+[font.italic]
+
+family = "Jet Brains Mono Nerd Font"
+style = "Medium Italic"
+
+[font.normal]
+
+family = "Jet Brains Mono Nerd Font"
+style = "Medium"
+
+[general]
+live_config_reload = true
+
+import = ["~/.config/alacritty/dracula.toml"]

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export SYSTEMD_EDITOR=/usr/bin/nvim
+export EDITOR=/usr/bin/nvim
+export SUDO_EDITOR=/usr/bin/nvim
+export TERM=xterm-256color
