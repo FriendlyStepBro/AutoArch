@@ -13,6 +13,7 @@ waybar
 auto-cpufreq
 fzf
 alacritty
+oh-my-posh
 neofetch
 exa
 tldr
@@ -30,6 +31,7 @@ pimixer
 celluloid
 brightnessctl
 brave-bin
+unzip
 udisks2
 udiskie
 base-devel

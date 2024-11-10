@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$(id -u)" -eq 0 ]; then
+	echo "Must be run as user, not root."
+	exit 1
+fi
+
 export installer_location=$(dirname $(realpath $0))
 export user_name=$(whoami)
 
@@ -20,6 +25,7 @@ done < packages
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
+
 rm -rf yay
 
 for package in "${aur_packages[@]}"; do
@@ -39,8 +45,19 @@ ExecStart=-/usr/bin/agetty --autologin $user_name --noclear %I \$TERM
 Type=simple
 EOL
 
+sudo rm -f $HOME/.bashrc
+sudo tee $HOME/.bashrc > /dev/null << EOL
+#!/bin/bash
+source $installer_loaction/bash/init
+EOL
+source ~/.bashrc
+
 sudo systemctl daemon-reload
 sudo systemctl enable getty@tty1.service
+
+autoarch_dir="$(dirname "$(realpath "$0")")"
+sudo bash $autoarch_dir/scripts/services_link.sh
+bash $autoarch_dir/script/dotfiles_link.sh
 
 sudo auto-cpufreq --install
 
