@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# If not running interactively, don't do anything
+# [[ $- != *i* ]] && return
+
+[[ -f $HOME/autoarch/bash/alias ]] && . $HOME/autoarch/bash/alias
+[[ -f $HOME/autoarch/bash/env ]] && . $HOME/autoarch/bash/env
+
+PS1='[\u@\h \W]\$ '
+
+# Sets up nvm and it's directory in the bash environment
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 export HISTFILESIZE=0
 
 clear

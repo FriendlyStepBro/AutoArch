@@ -37,6 +37,10 @@ chmod +x strap.sh
 sudo bash strap.sh
 rm -rf strap.sh
 
+curl -fLo $HOME/.local/share/fonts/Hurmit.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.zip
+unzip $HOME/.local/share/fonts/Hurmit.zip
+rm -f $HOME/.local/share/fonts/Hurmit.zip
+
 sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
 sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf > /dev/null << EOL
 [Service]
@@ -48,7 +52,7 @@ EOL
 sudo rm -f $HOME/.bashrc
 sudo tee $HOME/.bashrc > /dev/null << EOL
 #!/bin/bash
-source $installer_loaction/bash/init
+source $HOME/bash/init
 EOL
 source ~/.bashrc
 
