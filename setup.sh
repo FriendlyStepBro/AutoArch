@@ -52,6 +52,7 @@ EOL
 sudo rm -f $HOME/.bashrc
 sudo tee $HOME/.bashrc > /dev/null << EOL
 #!/bin/bash
+[[ "$TTY" = "1" ]] && exec hyprland
 source $HOME/bash/init
 EOL
 source ~/.bashrc
