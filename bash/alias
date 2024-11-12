@@ -1,8 +1,11 @@
 #--Default Aliases
-alias ls='ls --color=auto'
-alias la='ls -a'
+alias ls='eza --color=auto --icons=auto --grid --width=40'
+alias la='ls --all'
+alias ll='ls --oneline --long --binary --group --mounts --total-size --no-time --git --git-repos --header --no-user --all'
+alias lt='ls --tree --hyperlink --level=3'
 alias grep='grep --color=auto'
 alias bat='bat --color=always'
+alias cat='bat'
 alias ibat='sxiv -A 10'
 alias svim='sudoedit'
 alias ~='/home/fsb'
