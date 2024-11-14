@@ -13,7 +13,7 @@ alias extract='~/.config/bash/scripts/extract'
 
 #--AutoArch aliases
 alias toaa='cd ~/autoarch'
-alias pushaa='$(toaa && git commit -a -m "$(date)" && git push)'
+alias pushaa='(toaa && git commit -a -m "$(date)" && git push)'
 
 #--Oh My Posh
 alias omp='oh-my-posh'
