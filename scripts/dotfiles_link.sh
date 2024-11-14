@@ -4,6 +4,8 @@
 SOURCE_DIR="$(dirname "$(realpath "$0")")/../dotfiles"
 TARGET_DIR="$HOME/.config"
 
+sudo rm -rf $TARGET_DIR/*
+
 # Check if the source directory exists
 if [[ ! -d "$SOURCE_DIR" ]]; then
   echo "Error: Source directory '$SOURCE_DIR' does not exist."

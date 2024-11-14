@@ -5,7 +5,6 @@ if [ "$(id -u)" -eq 0 ]; then
 	exit 1
 fi
 
-export installer_location=$(dirname $(realpath $0))
 export user_name=$(whoami)
 
 # Set time format to match windows to allow synchronisation for dual boot
@@ -25,7 +24,7 @@ done < packages
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-
+cd ../
 rm -rf yay
 
 for package in "${aur_packages[@]}"; do
@@ -37,10 +36,6 @@ chmod +x strap.sh
 sudo bash strap.sh
 rm -rf strap.sh
 
-curl -fLo $HOME/.local/share/fonts/Hurmit.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.zip
-unzip $HOME/.local/share/fonts/Hurmit.zip
-rm -f $HOME/.local/share/fonts/Hurmit.zip
-
 sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
 sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf > /dev/null << EOL
 [Service]
@@ -50,19 +45,14 @@ Type=simple
 EOL
 
 sudo rm -f $HOME/.bashrc
-sudo tee $HOME/.bashrc > /dev/null << EOL
-#!/bin/bash
-[[ "$TTY" = "1" ]] && exec hyprland
-source $HOME/bash/init
-EOL
+sudo ln $HOME/autoarch/bash/bashrc $HOME/.bashrc
 source ~/.bashrc
 
 sudo systemctl daemon-reload
 sudo systemctl enable getty@tty1.service
 
-autoarch_dir="$(dirname "$(realpath "$0")")"
-sudo bash $autoarch_dir/scripts/services_link.sh
-bash $autoarch_dir/script/dotfiles_link.sh
+sudo bash $HOME/autoarch/scripts/services_link.sh
+bash $HOME/autoarch/script/dotfiles_link.sh
 
 sudo auto-cpufreq --install
 
