@@ -1,11 +1,9 @@
 [Unit]
-Description=Udiskie Automounter
-After=udisks2.service
-
-[Service]
-ExecStart=/usr/bin/udiskie --no-automount
-Restart=on-failure
-User=fsb
+Description=Udiskie automount daemon
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/udiskie --automount --config ~/.config/udiskie/config.yml --notify 
+User=fsb
