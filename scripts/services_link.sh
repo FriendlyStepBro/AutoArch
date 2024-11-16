@@ -13,18 +13,18 @@ for loc_file in "$service_dir"/*.loc; do
 		target_location=$(head -n 1 "$loc_file")
 		echo "Target location: $target_location"
 		if systemctl is-enabled --quiet "$service_name"; then
-			systemctl disable "$service_name"
+			sudo systemctl disable "$service_name"
 		else
 			echo "$service_name not running"
 		fi
 		ln -sf "$service_file" "$target_location"
-		systemctl enable "$service_name"
-		systemctl restart "$service_name"
+		sudo systemctl enable "$service_name"
+		sudo systemctl restart "$service_name"
 		echo "Service $filename linked to $target_location, enabled, and restarted."
 	else
 		echo "No corresponding .service file for $loc_file"
 	fi
 done
 
-systemctl daemon-reload
+sudo systemctl daemon-reload
 

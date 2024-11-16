@@ -15,6 +15,9 @@ alias extract='~/.config/bash/scripts/extract'
 alias toaa='cd ~/autoarch'
 alias pushaa='(toaa && git commit -a -m "$(date)" && git push)'
 
+#--LibreOffice aliaes
+alias lo='libreoffice'
+
 #--Oh My Posh
 alias omp='oh-my-posh'
 
@@ -33,8 +36,8 @@ alias py='python'
 alias pyvenv='source /home/fsb/python/venv/bin/activate'
 
 #--Ollama Auto Load Model
-alias phi='ollama run phi3.5'
-alias oll='ollama run llama3.2:3b'
+alias phi='ollama run phi3.5-concise-system'
+alias lam='ollama run llama3.2:3b-concise-system'
 
 #--Pacman Aliases
 alias pacman='sudo pacman'

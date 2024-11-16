@@ -22,11 +22,6 @@ vim.keymap.set('n', '<leader>l', '$', { noremap = false, silent = true })
 vim.keymap.set('v', '<leader>h', '^', { noremap = false, silent = true })
 vim.keymap.set('v', '<leader>l', '$', { noremap = false, silent = true })
 
-vim.keymap.set('i', 'Meta-h', '<Esc>ha', { noremap =false, silent = true })
-vim.keymap.set('i', 'Meta-l', '<Esc>la', { noremap =false, silent = true })
-vim.keymap.set('i', 'Meta-j', '<Esc>ja', { noremap =false, silent = true })
-vim.keymap.set('i', 'Meta-k', '<Esc>ka', { noremap =false, silent = true })
-
 -- insert line about without entering insert mode
 vim.keymap.set('n', '<leader>o', 'm`o<Esc>``', { noremap = false, silent = true })
 vim.keymap.set('n', '<leader>O', 'm`O<Esc>``', { noremap = false, silent = true })
