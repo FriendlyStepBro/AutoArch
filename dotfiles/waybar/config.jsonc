@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "hyprland/mode"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "network", "backlight","cpu", "battery#bat2", "clock"],
+    "modules-right": ["pulseaudio", "network", "nm-applet", "backlight","cpu", "battery#bat2", "clock"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,

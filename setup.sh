@@ -36,6 +36,8 @@ chmod +x strap.sh
 sudo bash strap.sh
 rm -rf strap.sh
 
+git clone https://github.com/m4thewz/dracula-icons ~/.icons/Dracula
+
 sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
 sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf > /dev/null << EOL
 [Service]

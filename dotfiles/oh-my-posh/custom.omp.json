@@ -175,47 +175,6 @@
           "style": "diamond"
         },
         {
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
-          "template": "\uf104<#f5bf45>\uf0e7</>\uf105 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
-          "foreground": "#5398c2",
-          "background": "#ffffff",
-          "type": "azfunc",
-          "style": "diamond"
-        },
-        {
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
-          "template": "\ue7ad {{.Profile}}{{if .Region}}@{{.Region}}{{end}}",
-          "foreground": "#faa029",
-          "background": "#565656",
-          "type": "aws",
-          "style": "diamond"
-        },
-        {
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4",
-          "template": "\uf308 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
-          "foreground": "#ffffff",
-          "background": "#316ce4",
-          "type": "kubectl",
-          "style": "diamond"
-        },
-        {
-          "properties": {
-            "linux": "\ue712",
-            "macos": "\ue711",
-            "windows": "\ue70f"
-          },
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "<transparent,background>\ue0b2</>",
-          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
-          "foreground": "#222222",
-          "background": "#b2bec3",
-          "type": "os",
-          "style": "diamond"
-        },
-        {
           "properties": {
             "charged_icon": "\uf240 ",
             "charging_icon": "\uf1e6 ",
