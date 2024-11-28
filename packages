@@ -16,7 +16,7 @@ alacritty
 oh-my-posh
 neofetch
 exa
-tldr
+tealdeer
 tlrc
 man
 tmux
@@ -67,3 +67,5 @@ nm-connection-editor
 networkmanager
 networkmanager-openvpn
 openresolv
+eww-git
+discord

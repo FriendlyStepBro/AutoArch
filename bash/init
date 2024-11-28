@@ -18,14 +18,25 @@ export HISTFILESIZE=0
 
 clear
 #--Check if neofetch is installed and run it
+# if [ -z "$TERMINAL_LAUNCHED" ]; then
+#     TERMINAL_LAUNCHED=true
+#     if type -P neofetch &> /dev/null; then
+#         if [ -z "$TMUX" ]; then
+#             neofetch
+#         fi
+#     else
+#         echo "Error: NeoFetch not installed."
+#     fi
+# fi
+
 if [ -z "$TERMINAL_LAUNCHED" ]; then
     TERMINAL_LAUNCHED=true
-    if type -P neofetch &> /dev/null; then
+    if type -P fastfetch &> /dev/null; then
         if [ -z "$TMUX" ]; then
-            neofetch
+            fastfetch
         fi
     else
-        echo "Error: NeoFetch not installed."
+        echo "Error: FastFetch not installed."
     fi
 fi
 
