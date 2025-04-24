@@ -7,13 +7,18 @@ alias grep='rg --color=auto'
 alias bat='bat --color=always'
 alias cat='bat'
 alias ibat='sxiv -A 10'
+alias hvim='nvim ~'
 alias svim='sudoedit'
-alias ~='/home/fsb'
 alias extract='~/.config/bash/scripts/extract'
 
 #--AutoArch aliases
 alias toaa='cd ~/autoarch'
 alias pushaa='(toaa && git commit -a -m "$(date)" && git push)'
+alias nvalias='nvim $HOME/autoarch/bash/alias'
+
+#--Nvim aliases
+alias leetcode='nvim -c Leet'
+alias leet='leetcode'
 
 #--LibreOffice aliaes
 alias lo='libreoffice'
@@ -28,8 +33,8 @@ alias rld='source ~/.bashrc'
 alias ovpn='openvpn'
 
 #--FZF Aliases
-alias fp='fzf -m --preview="bat --color=always {}"'
-alias nfp='nvim $(fzf -m --preview="bat --color=always {}")'
+alias ffp='fzf -m --preview="bat --color=always {}"'
+alias ffn='nvim $(fzf -m --preview="bat --color=always {}")'
 
 #--Python Shortcuts
 alias py='python'

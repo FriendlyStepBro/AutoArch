@@ -6,32 +6,45 @@ vim.cmd("set scrolloff=999")
 vim.cmd("set mouse=")
 -- vim.cmd("set wildmenu=true")
 
+vim.opt.timeoutlen = 1500
 vim.opt.relativenumber = true
 vim.opt.number = true
+vim.opt.cursorline = true
 
-vim.keymap.set('n', '<Space>', '<NOP>', { noremap = true, silent = true })
-vim.keymap.set('v', '<Space>', '<NOP>', { noremap = true, silent = true })
-vim.g.mapleader = " "
+vim.opt.showmode = false
+vim.opt.breakindent = true
+vim.opt.undofile = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
--- additional keybinds
-vim.keymap.set('n', '<leader>fq', ":qa!<CR>", {})
-vim.keymap.set('n', '<leader>wq', ":wa<CR>:qa<CR>:", {})
+vim.g.have_nerd_font = true
+vim.opt.signcolumn = 'yes'
+vim.opt.confirm = true
+vim.opt.inccommand = 'nosplit'
 
-vim.keymap.set('n', '<leader>h', '^', { noremap = false, silent = true })
-vim.keymap.set('n', '<leader>l', '$', { noremap = false, silent = true })
-vim.keymap.set('v', '<leader>h', '^', { noremap = false, silent = true })
-vim.keymap.set('v', '<leader>l', '$', { noremap = false, silent = true })
+-- Sets how neovim will display certain whitespace characters in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- insert line about without entering insert mode
-vim.keymap.set('n', '<leader>o', 'm`o<Esc>``', { noremap = false, silent = true })
-vim.keymap.set('n', '<leader>O', 'm`O<Esc>``', { noremap = false, silent = true })
+-- Clear highlights on search when pressing <Esc> in normal mode
+--  See `:help hlsearch`
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.keymap.set('n', '<leader>p', '"+p', { noremap = false, silent = true})
-vim.keymap.set('n', '<leader>y', '"+yy', { noremap = false, silent = true})
-vim.keymap.set('v', '<leader>y', '"+y', { noremap = false, silent = true})
+-- Diagnostic keymaps
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
---vim.keymap.set('v', '<leader>j', ':move v:count+1<CR>gv', { noremap = true, silent = true })
---vim.keymap.set('v', '<leader>k', ':move .-2<CR>gv', { noremap = true, silent = true })
+-- [[ Basic Autocommands ]]
+--  See `:help lua-guide-autocommands`
 
-vim.keymap.set('n', '<leader>j', ':move +1<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>k', ':move -2<CR>', { noremap = true, silent = true })
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
