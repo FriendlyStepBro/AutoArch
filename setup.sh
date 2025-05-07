@@ -47,14 +47,14 @@ Type=simple
 EOL
 
 sudo rm -f $HOME/.bashrc
-sudo ln $HOME/autoarch/bash/bashrc $HOME/.bashrc
+sudo ln $HOME/repos/autoarch/bash/bashrc $HOME/.bashrc
 source ~/.bashrc
 
 sudo systemctl daemon-reload
 sudo systemctl enable getty@tty1.service
 
-sudo bash $HOME/autoarch/scripts/services_link.sh
-bash $HOME/autoarch/script/dotfiles_link.sh
+sudo bash $HOME/repos/autoarch/scripts/services_link.sh
+bash $HOME/repos/autoarch/script/dotfiles_link.sh
 
 sudo auto-cpufreq --install
 

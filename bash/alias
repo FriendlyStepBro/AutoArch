@@ -12,9 +12,9 @@ alias svim='sudoedit'
 alias extract='~/.config/bash/scripts/extract'
 
 #--AutoArch aliases
-alias toaa='cd ~/autoarch'
+alias toaa='cd ~/repos/autoarch'
 alias pushaa='(toaa && git commit -a -m "$(date)" && git push)'
-alias nvalias='nvim $HOME/autoarch/bash/alias'
+alias nvalias='nvim $HOME/repos/autoarch/bash/alias'
 
 #--Nvim aliases
 alias leetcode='nvim -c Leet'
@@ -38,7 +38,7 @@ alias ffn='nvim $(fzf -m --preview="bat --color=always {}")'
 
 #--Python Shortcuts
 alias py='python'
-alias pyvenv='source /home/fsb/python/venv/bin/activate'
+alias pyvenv='source $HOME/python/venv/bin/activate'
 
 #--Ollama Auto Load Model
 alias phi='ollama run phi3.5'
@@ -61,3 +61,25 @@ alias enableBluetooth='~/.config/scripts/trx/enableBluetooth.sh'
 
 #--C-Sharp REPL(Read-Eval-Print-Loop)
 alias csrep='csharprepl'
+
+
+#--Set Project to Current Directory and then Return to it
+setproject() {
+  export PROJECT="$PWD"
+  echo "PROJECT set to: $PROJECT"
+}
+
+# 2) project: cd into $PROJECT if no args, or into $1 if given
+project() {
+
+  if [ $# -gt 0 ]; then
+    cd "$1" || return
+  else
+    if [ -z "$PROJECT" ]; then
+      echo "⚠️  PROJECT is not set. Run 'setproject' in the dir you want to save."
+      return 1
+    fi
+    cd "$PROJECT" || return
+
+  fi
+}

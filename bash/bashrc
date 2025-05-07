@@ -1,4 +1,3 @@
 #!/bin/bash
 [[ $(tty) == "/dev/tty1" ]] && exec hyprland
-export PATH=$PATH:$HOME/go/bin
-source /home/fsb/autoarch/bash/init
+source $HOME/repos/autoarch/bash/init
