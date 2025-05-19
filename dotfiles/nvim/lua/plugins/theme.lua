@@ -14,8 +14,8 @@ return {
 				dim_inactive = true,  -- fade inactive windows
 				styles = {
 					comments  = "italic",
-					keywords  = "bold",
-					functions = "italic,bold",
+					-- keywords  = "bold",
+					functions = "bold",
 				},
 				inverse = {
 					match_paren = true,

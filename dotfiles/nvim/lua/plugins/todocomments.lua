@@ -13,7 +13,6 @@ return {
                 PERF = { icon = "󰓅 ", color = "hint" },
                 NOTE = { icon = " ", color = "hint" },
             },
-            --TODO
             search = {
                 command = "rg",
                 args = {
@@ -28,6 +27,6 @@ return {
         -- Load telescope extension for todo-comments
         require("telescope").load_extension("todo-comments")
         -- Optionally, add a keybinding to invoke todo-comments search via Telescope
-        vim.keymap.set("n", "<leader>td", "<cmd>TodoTelescope<CR>", { desc = "[T]o[D]o's" })
+        vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "[F]ind [T]odo's" })
     end,
 }

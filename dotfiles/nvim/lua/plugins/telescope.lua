@@ -34,16 +34,17 @@ return {
     require("telescope").load_extension("fzf")
     require("telescope").load_extension("ui-select")
     -- Telescope builtins key mappings under <leader>f prefix
-    vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "[F]ind Files" })
-    vim.keymap.set("n", "<leader><leader>", require("telescope.builtin").live_grep, { desc = "[F]ind by Grep" })
-    vim.keymap.set("n", "<leader>fb", require("telescope.builtin").buffers, { desc = "[F]ind Buffers" })
-    vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { desc = "[F]ind Help" })
+    vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "[F]ind [F]iles" })
+    vim.keymap.set("n", "<leader><leader>", require("telescope.builtin").live_grep, { desc = "[ ][ ]Find by Grep" })
+    vim.keymap.set("n", "<leader>fb", require("telescope.builtin").buffers, { desc = "[F]ind [B]uffers" })
+    vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { desc = "[F]ind [H]elp" })
+    vim.keymap.set("n", "<leader>fk", require("telescope.builtin").keymaps, { desc = "[F]ind [K]eymaps" })
     -- Additional Telescope mappings
-    vim.keymap.set("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "[F]ind Diagnostics" })
-    vim.keymap.set("n", "<leader>fs", require("telescope.builtin").grep_string, { desc = "[F]ind Grep String" })
+    vim.keymap.set("n", "<leader>fe", require("telescope.builtin").diagnostics, { desc = "[F]ind [E]rrors" })
+    vim.keymap.set("n", "<leader>fs", require("telescope.builtin").grep_string, { desc = "[F]ind by Grep [S]tring" })
     vim.keymap.set("n", "<leader>/", require("telescope.builtin").current_buffer_fuzzy_find, { desc = "[F]uzzy Search in Buffer" })
     vim.keymap.set("n", "<leader>fn", function()
       require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
-    end, { desc = "[F]ind Config Files" })
+    end, { desc = "[F]ind [N]eovim Config Files" })
   end,
 }

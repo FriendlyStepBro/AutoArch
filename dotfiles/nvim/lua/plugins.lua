@@ -18,6 +18,7 @@ return {
   require("plugins.whichkey"), -- Added which-key integration
   require("plugins.todocomments"), -- Added TODO Comments integration with Telescope
   require("plugins.lazygit"), -- Added LazyGit integration
+    -- require("plugins.testrunner")
   -- To disable a plugin, comment out its require call:
   -- require("plugins.nvim-tree"),
 }
