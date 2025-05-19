@@ -36,7 +36,7 @@ return {
       map("n", "gn", vim.diagnostic.goto_next, "[G]oto [N]ext Diagnostic")
       map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
       map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-      map("n", "<leader>dt", function()
+      map("n", "<leader>dT", function()
         if vim.lsp.inlay_hint then
           local enabled = vim.b.lsp_inlay_hint_enabled or false
           vim.b.lsp_inlay_hint_enabled = not enabled
@@ -120,7 +120,7 @@ return {
       end,
     })
 
-    vim.keymap.set("n", "<leader>td", function()
+    vim.keymap.set("n", "<leader>dt", function()
       local current = vim.diagnostic.config().virtual_text
       if current and current ~= false then
         vim.diagnostic.config({ virtual_text = false })
@@ -129,6 +129,6 @@ return {
         vim.diagnostic.config({ virtual_text = true })
         print("Inline diagnostics enabled")
       end
-    end, { desc = "Toggle inline diagnostics" })
+    end, { desc = "[D]iagnostics [T]oggle Inline" })
   end,
 }
