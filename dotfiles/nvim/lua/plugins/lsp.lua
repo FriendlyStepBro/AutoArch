@@ -3,20 +3,41 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim", -- updated fork of null-ls
   },
   config = function()
-    vim.diagnostic.config({
-      virtual_text = true
-    })
+    vim.diagnostic.config({ virtual_text = true })
 
+    -- Setup Mason
     require("mason").setup()
     require("mason-lspconfig").setup({
       automatic_installation = true,
-      ensure_installed = { "omnisharp", "pylsp" }, -- Added pylsp for clarity
+      ensure_installed = { "omnisharp", "pylsp" },
     })
 
     local lspconfig = require("lspconfig")
+
+    -- Global hover/signature borders
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+      vim.lsp.handlers.hover, { border = "rounded" }
+    )
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+      vim.lsp.handlers.signature_help, { border = "rounded" }
+    )
+
+    -- Formatting on demand
+    vim.keymap.set("n", "<leader>df", function()
+      vim.lsp.buf.format({ async = true })
+    end, { desc = "[D]iagnostics [F]ormat buffer" })
+
+    -- Inlay hint toggle
+    vim.keymap.set("n", "<leader>dT", function()
+      if vim.lsp.inlay_hint then
+        local enabled = vim.b.lsp_inlay_hint_enabled or false
+        vim.b.lsp_inlay_hint_enabled = not enabled
+        vim.lsp.inlay_hint(0, not enabled)
+      end
+    end, { desc = "[D]iagnostics [T]oggle Inlay Hints" })
 
     local on_attach = function(client, bufnr)
       local bufopts = { buffer = bufnr, silent = true }
@@ -36,30 +57,25 @@ return {
       map("n", "gn", vim.diagnostic.goto_next, "[G]oto [N]ext Diagnostic")
       map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
       map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-      map("n", "<leader>dT", function()
-        if vim.lsp.inlay_hint then
-          local enabled = vim.b.lsp_inlay_hint_enabled or false
-          vim.b.lsp_inlay_hint_enabled = not enabled
-          vim.lsp.inlay_hint(bufnr, not enabled)
-        end
-      end, "[D]iagnostics [T]oggle")
 
-      local lsp_format_grp = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-      vim.api.nvim_clear_autocmds({ group = lsp_format_grp, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = lsp_format_grp,
-        buffer = bufnr,
-        callback = function() vim.lsp.buf.format({ bufnr = bufnr }) end,
-      })
+      if client.server_capabilities.documentFormattingProvider then
+        local format_grp = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
+        vim.api.nvim_clear_autocmds({ group = format_grp, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = format_grp,
+          buffer = bufnr,
+          callback = function() vim.lsp.buf.format({ bufnr = bufnr }) end,
+        })
+      end
 
       if client.server_capabilities.codeLensProvider then
         local clgroup = vim.api.nvim_create_augroup("LspCodeLens", { clear = true })
-        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold" }, {
           buffer = bufnr,
           group  = clgroup,
           callback = vim.lsp.codelens.refresh,
         })
-        vim.keymap.set("n", "<leader>dr", vim.lsp.codelens.refresh, { buffer = bufnr, desc = "[D]iagnostic [R]efresh" })
+        map("n", "<leader>dr", vim.lsp.codelens.refresh, "[D]iagnostic [R]efresh")
       end
     end
 
@@ -77,21 +93,17 @@ return {
           plugins = {
             pyflakes = { enabled = false },
             pycodestyle = { enabled = false },
-          }
-        }
-      }
+          },
+        },
+      },
     })
 
     lspconfig.omnisharp.setup({
       cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
       on_attach = on_attach,
       capabilities = capabilities,
-      root_dir = lspconfig.util.root_pattern("*.sln", ".git"),
+      root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
       flags = { debounce_text_changes = 150 },
-      handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-      },
       settings = {
         omnisharp = {
           useModernNet = true,
@@ -104,31 +116,15 @@ return {
       },
     })
 
-    vim.api.nvim_create_autocmd("BufEnter", {
-      group = vim.api.nvim_create_augroup("LspAutoAttach", { clear = true }),
-      callback = function()
-        local bufnr = vim.api.nvim_get_current_buf()
-        local clients = vim.lsp.get_clients({ bufnr = bufnr })
-        if vim.tbl_isempty(clients) then
-          vim.cmd("LspStart")
-        else
-          vim.lsp.buf_request(bufnr, "textDocument/publishDiagnostics",
-            { textDocument = vim.lsp.util.make_text_document_params() },
-            function() end
-          )
-        end
-      end,
+    -- Setup null-ls (formatter backend)
+    local null_ls = require("null-ls")
+    null_ls.setup({
+      sources = {
+        null_ls.builtins.formatting.black,       -- Python
+        null_ls.builtins.formatting.prettier,    -- JS/TS/HTML/CSS/JSON
+        null_ls.builtins.formatting.csharpier,   -- C#
+      },
+      on_attach = on_attach,
     })
-
-    vim.keymap.set("n", "<leader>dt", function()
-      local current = vim.diagnostic.config().virtual_text
-      if current and current ~= false then
-        vim.diagnostic.config({ virtual_text = false })
-        print("Inline diagnostics disabled")
-      else
-        vim.diagnostic.config({ virtual_text = true })
-        print("Inline diagnostics enabled")
-      end
-    end, { desc = "[D]iagnostics [T]oggle Inline" })
   end,
 }

@@ -4,7 +4,6 @@ return {
     require("plugins.treesitter"),
     require("plugins.textobjects"), -- Added improved text objects plugin
     require("plugins.lsp"), -- Added LSP configuration
-    -- require("plugins.formatter"), -- Removed formatter
     require("plugins.debug"), -- Added Debugging configuration
     require("plugins.theme"), -- Added Theme configuration (carbonfox)
     require("plugins.neotree"), -- Added Neo-tree explorer configuration
@@ -20,5 +19,4 @@ return {
     require("plugins.lazygit"), -- Added LazyGit integration
     require("plugins.testrunner")
   -- To disable a plugin, comment out its require call:
-  -- require("plugins.nvim-tree"),
 }
