@@ -122,7 +122,7 @@ return {
       sources = {
         null_ls.builtins.formatting.black,       -- Python
         null_ls.builtins.formatting.prettier,    -- JS/TS/HTML/CSS/JSON
-        null_ls.builtins.formatting.csharpier,   -- C#
+        -- null_ls.builtins.formatting.csharpier,   -- C#
       },
       on_attach = on_attach,
     })
