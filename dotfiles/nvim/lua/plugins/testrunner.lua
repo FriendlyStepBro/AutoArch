@@ -46,13 +46,13 @@ return {
     map("[t", function() neotest.jump.prev({ status = "failed" }) end, "Test: Previous failed test")
 
     -- Auto-refresh test summary on buffer changes
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-      group = vim.api.nvim_create_augroup("NeotestAutoRefresh", { clear = true }),
-      callback = function()
-        if neotest.summary.is_open() then
-          neotest.summary.sync()
-        end
-      end,
-    })
+    -- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+    --   group = vim.api.nvim_create_augroup("NeotestAutoRefresh", { clear = true }),
+    --   callback = function()
+    --     if neotest.summary.is_open() then
+    --       neotest.summary.sync()
+    --     end
+    --   end,
+    -- })
   end,
 }
