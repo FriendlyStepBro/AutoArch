@@ -1,0 +1,16 @@
+[general]
+live_config_reload = true
+import = ["~/.config/alacritty/dracula.toml"]
+
+[font.normal]
+family = "Hurmit Nerd Font"
+style = "Medium"
+
+[font.bold]
+style = "Heavy"
+
+[font.bold_italic]
+style = "Heavy Italic"
+
+[font.italic]
+style = "Medium Italic"
