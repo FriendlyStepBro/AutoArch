@@ -16,6 +16,8 @@ return {
     require("plugins.gitsigns"), -- Added Gitsigns for Git integration
     require("plugins.whichkey"), -- Added which-key integration
     require("plugins.todocomments"), -- Added TODO Comments integration with Telescope
+    require("plugins.highlightcolors"),
+    require("plugins.livecommand"),
     require("plugins.lazygit"), -- Added LazyGit integration
     require("plugins.project"),
     require("plugins.testrunner"),
