@@ -37,8 +37,7 @@ alias ffp='fzf -m --preview="bat --color=always {}"'
 alias ffn='nvim $(fzf -m --preview="bat --color=always {}")'
 
 #--Python Shortcuts
-alias py='python'
-alias pyvenv='source $HOME/python/venv/bin/activate'
+alias py='python3'
 
 #--Ollama Auto Load Model
 alias phi='ollama run phi3.5'

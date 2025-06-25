@@ -85,22 +85,40 @@ return {
             capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
         end
 
+        local pylsp_on_attach = function(client, bufnr)
+            local opts = { buffer = bufnr, remap = false }
+
+            -- Disable pylsp's default completion and hover providers
+            client.server_capabilities.completionProvider = false
+            client.server_capabilities.hoverProvider = false
+
+            -- Map keys to Jedi-provided features
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- Jedi documentation
+            vim.keymap.set("i", "<C-Space>", vim.lsp.buf.complete, opts) -- Jedi completions
+            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        end
+
         lspconfig.pylsp.setup({
-            on_attach = on_attach,
+            on_attach = pylsp_on_attach,
             capabilities = capabilities,
-            root_dir = lspconfig.util.root_pattern(".git"),
+            root_dir = lspconfig.util.root_pattern(".root", ".git"),
             settings = {
                 pylsp = {
                     plugins = {
-                        black = { enabled = true},
-                        autopep8 = { enabled = false},
-                        pyflakes = { enabled = false },
+                        black = { enabled = false },
+                        pyls_isort = { enabled = true, profile = "black" },
+                        ruff = { enabled = false, ignore = { "W293", "E501" }, lineLength = 88 },
+                        pylsp_mypy = { enabled = true, live_mode = false, dmypy = true },
+                        jedi_completion = { enabled = false, fuzzy = true, include_params = true }, -- Only Jedi for completions/docs
+                        -- Disable all other completion/hover sources
                         pycodestyle = { enabled = false },
+                        pylint = { enabled = false, args = { "--disable", "W293 E501 C0114 C0115 C0116" } },
+                        autopep8 = { enabled = false },
                         yapf = { enabled = false },
-                        pylint = { enabled = true, executable = "pylint" },
-                        pylsp_mypy = { enabled = true },
-                        jedi_completions = { fuzzy = true },
-                        pyls_isort = { enabled = true },
+                        pyflakes = { enabled = false },
+                        rope_completion = { enabled = false },
+                        completion = { enabled = false },
+                        hover = { enabled = false },
                     },
                 },
             },
