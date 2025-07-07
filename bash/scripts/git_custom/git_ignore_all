@@ -1,3 +1,0 @@
-#!/bin/bash
-
-[[ -f .git ]] && grep '?? ' <(git status --porcelain) | sed 's/^?? //' >> .gitignore

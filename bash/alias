@@ -3,34 +3,24 @@ alias ls='eza --color=auto --icons=auto --grid --width=60'
 alias la='ls --all'
 alias ll='ls --oneline --long --binary --group --mounts --total-size --no-time --git --git-repos --header --no-user --all'
 alias lt='ls --tree --hyperlink --level=3'
-alias grep='rg --color=auto'
 alias bat='bat --color=always'
 alias cat='bat'
 alias ibat='sxiv -A 10'
-alias hvim='nvim ~'
 alias svim='sudoedit'
-alias extract='~/.config/bash/scripts/extract'
 
 #--AutoArch aliases
 alias toaa='cd ~/repos/autoarch'
 alias pushaa='(toaa && git commit -a -m "$(date)" && git push)'
-alias nvalias='nvim $HOME/repos/autoarch/bash/alias'
 
 #--Nvim aliases
 alias leetcode='nvim -c Leet'
 alias leet='leetcode'
-
-#--LibreOffice aliaes
-alias lo='libreoffice'
 
 #--Oh My Posh
 alias omp='oh-my-posh'
 
 #--Source Reload
 alias rld='source ~/.bashrc'
-
-#--Open VPN aliases
-alias ovpn='openvpn'
 
 #--FZF Aliases
 alias ffp='fzf -m --preview="bat --color=always {}"'
@@ -43,34 +33,13 @@ alias py='python3'
 alias phi='ollama run phi3.5'
 alias lam='ollama run llama3.2:3b'
 
-#--Pacman Aliases
-alias pacman='sudo pacman'
-
-#--Tmux Aliases
-# alias tmux='tmux --rcfile ~/.bashrc'
-
-#--Vim Be Good
-alias vbg='sudo docker run -it --rm brandoncc/vim-be-good:stable'
-
-#--Wifi & Bluetooth scripts
-alias disableWiFi='~/.config/scripts/trx/disableWiFi.sh'
-alias enableWiFi='~/.config/scripts/trx/enableWiFi.sh'
-alias disableBluetooth='~/.config/scripts/trx/disableBluetooth.sh'
-alias enableBluetooth='~/.config/scripts/trx/enableBluetooth.sh'
-
-#--C-Sharp REPL(Read-Eval-Print-Loop)
-alias csrep='csharprepl'
-
-
 #--Set Project to Current Directory and then Return to it
 setproject() {
   export PROJECT="$PWD"
   echo "PROJECT set to: $PROJECT"
 }
-
 # 2) project: cd into $PROJECT if no args, or into $1 if given
 project() {
-
   if [ $# -gt 0 ]; then
     cd "$1" || return
   else
@@ -79,6 +48,5 @@ project() {
       return 1
     fi
     cd "$PROJECT" || return
-
   fi
 }
