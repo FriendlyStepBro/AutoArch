@@ -23,7 +23,7 @@ fi
 
 #--Check if fzf and bat installed
 if type -P fzf &> /dev/null; then
-	eval "$(fzf -v)"
+	eval "$(fzf --version)"
 else
 	echo "Error: FZF not installed."
 fi
