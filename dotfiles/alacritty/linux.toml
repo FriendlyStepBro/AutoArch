@@ -1,6 +1,6 @@
 [general]
 live_config_reload = true
-import = ["~/.config/alacritty/dracula.toml"]
+import = ["~/repos/autoarch/dotfiles/alacritty/dracula.toml"]
 
 [font.normal]
 family = "Hurmit Nerd Font"
