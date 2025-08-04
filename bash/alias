@@ -7,6 +7,7 @@ alias bat='bat --color=always'
 alias cat='bat'
 alias ibat='sxiv -A 10'
 alias svim='sudoedit'
+alias pacman='sudo pacman'
 
 #--AutoArch aliases
 alias toaa='pushd ~/repos/autoarch'
