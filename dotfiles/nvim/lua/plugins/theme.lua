@@ -10,6 +10,10 @@ return {
 			palettes    = palettes,
 			specs       = specs,
 			options  = {
+<<<<<<< HEAD
+=======
+				transparent  = true,  -- no background
+>>>>>>> 4cd7d5b (Moved most configuration over to hyprland desktop.)
 				dim_inactive = true,  -- fade inactive windows
                 transparent = false,
 				styles = {

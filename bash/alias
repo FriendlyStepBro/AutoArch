@@ -22,7 +22,7 @@ alias omp='oh-my-posh'
 alias rld='source ~/.bashrc'
 
 #--FZF Aliases
-alias ffp='fzf -m --preview="bat --color=always {}"'
+alias ff='fzf -m --preview="bat --color=always {}"'
 alias ffn='nvim $(fzf -m --preview="bat --color=always {}")'
 
 #--Python Shortcuts

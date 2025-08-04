@@ -5,6 +5,7 @@
 
 [[ -f $HOME/repos/autoarch/bash/alias ]] && . $HOME/repos/autoarch/bash/alias
 [[ -f $HOME/repos/autoarch/bash/env ]] && . $HOME/repos/autoarch/bash/env
+<<<<<<< HEAD
 
 # PS1='[\u@\h \W]\$ '
 
@@ -14,6 +15,21 @@ export NVM_DIR="$HOME/.nvm"
 
 export HISTFILESIZE=0
 
+=======
+[[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+PS1='[\u@\h \W]\$ '
+
+# Sets up nvm and it's directory in the bash environment
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#set -o vi
+export HISTFILESIZE=0
+
+clear
+
+>>>>>>> 4cd7d5b (Moved most configuration over to hyprland desktop.)
 #--Check if Oh-My-Posh is installed and run it
 if type -P oh-my-posh &> /dev/null; then
 	eval "$(oh-my-posh init bash --config $HOME/repos/autoarch/dotfiles/oh-my-posh/froczh.omp.json)"
@@ -21,9 +37,12 @@ else
 	echo "Error: Oh-My-Posh not installed."
 fi
 
+<<<<<<< HEAD
 #--Check if fzf and bat installed
 if type -P fzf &> /dev/null; then
 	eval "$(fzf --version)"
 else
 	echo "Error: FZF not installed."
 fi
+=======
+>>>>>>> 4cd7d5b (Moved most configuration over to hyprland desktop.)

@@ -2,5 +2,11 @@
  "export-settings-ini": true,
  "export-gtkrc-20": true,
  "export-index-theme": true,
+<<<<<<< HEAD
  "export-xsettingsd": true
 }
+=======
+ "export-xsettingsd": true,
+ "export-gtk4-symlinks": false
+}
+>>>>>>> 4cd7d5b (Moved most configuration over to hyprland desktop.)
