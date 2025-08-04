@@ -4,29 +4,44 @@ return {
     config = function()
         require("todo-comments").setup({
             signs = true,
-            sign_priority = 8,
+            -- sign_priority = 8,
+            merge_keywords = true,
+            colors = {
+                fix = { "#FF364E" },
+                todo = { "#588F4E" },
+                hack = { "#A03200" },
+                warn = { "#A03297" },
+                perf = { "#00AAFF" },
+                note = { "#FFFF19" },
+            },
             keywords = {
-                TODO = { icon = " ", color = "info" },
-                FIX = { icon = " ", color = "error" },
-                HACK = { icon = "󰯈 ", color = "warning" },
-                WARN = { icon = " ", color = "warning" },
-                PERF = { icon = "󰓅 ", color = "hint" },
-                NOTE = { icon = " ", color = "hint" },
+                FIX  = { icon = " ", color = "fix"  }, -- FIX:
+                TODO = { icon = " ", color = "todo" }, -- TODO:
+                HACK = { icon = "󰯈 ", color = "hack" }, -- HACK:
+                WARN = { icon = " ", color = "warn" }, -- WARN:
+                PERF = { icon = "󰓅 ", color = "perf" }, -- PERF:
+                NOTE = { icon = " ", color = "note" }, -- NOTE:
+            },
+            highlight = {
+                before = "bg",
+                keyword = "wide",
+                after = "fg",
+                comments_only = true,
+                exclude = {},
+                pattern = [[\b(KEYWORDS):\b]],
             },
             search = {
                 command = "rg",
                 args = {
-                    "--color=never",
+                    "--smart-case",
                     "--no-heading",
                     "--with-filename",
                     "--line-number",
                 },
-                pattern = [[\b(KEYWORDS)\b]]
-            }
+                pattern = [[\b(KEYWORDS):]],
+            },
         })
-        -- Load telescope extension for todo-comments
         require("telescope").load_extension("todo-comments")
-        -- Optionally, add a keybinding to invoke todo-comments search via Telescope
         vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "[F]ind [T]odo's" })
     end,
 }

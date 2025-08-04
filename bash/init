@@ -5,42 +5,14 @@
 
 [[ -f $HOME/repos/autoarch/bash/alias ]] && . $HOME/repos/autoarch/bash/alias
 [[ -f $HOME/repos/autoarch/bash/env ]] && . $HOME/repos/autoarch/bash/env
-[[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
 
-PS1='[\u@\h \W]\$ '
+# PS1='[\u@\h \W]\$ '
 
 # Sets up nvm and it's directory in the bash environment
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-#set -o vi
+[[ -f $HOME/repos/autoarch/bash/nvm ]] && . $HOME/repos/autoarch/bash/nvm
 
 export HISTFILESIZE=0
-
-clear
-#--Check if neofetch is installed and run it
-# if [ -z "$TERMINAL_LAUNCHED" ]; then
-#     TERMINAL_LAUNCHED=true
-#     if type -P neofetch &> /dev/null; then
-#         if [ -z "$TMUX" ]; then
-#             neofetch
-#         fi
-#     else
-#         echo "Error: NeoFetch not installed."
-#     fi
-# fi
-
-if [ -z "$TERMINAL_LAUNCHED" ]; then
-    TERMINAL_LAUNCHED=true
-    if type -P fastfetch &> /dev/null; then
-        if [ -z "$TMUX" ]; then
-            fastfetch
-        fi
-    else
-        echo "Error: FastFetch not installed."
-    fi
-fi
 
 #--Check if Oh-My-Posh is installed and run it
 if type -P oh-my-posh &> /dev/null; then
@@ -51,13 +23,7 @@ fi
 
 #--Check if fzf and bat installed
 if type -P fzf &> /dev/null; then
-	eval "$(fzf -v)"
-else
-	echo "Error: FZF not installed."
-fi
-
-if type -P bat &> /dev/null; then
-	eval "$(bat -v)"
+	eval "$(fzf --version)"
 else
 	echo "Error: FZF not installed."
 fi

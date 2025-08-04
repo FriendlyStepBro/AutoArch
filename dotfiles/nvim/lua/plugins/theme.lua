@@ -7,11 +7,11 @@ return {
 		local specs    = require("nightfox.spec").load("carbonfox")
 
 		require("nightfox").setup({
-			palettes = palettes,
-			specs    = specs,
+			palettes    = palettes,
+			specs       = specs,
 			options  = {
-				-- transparent  = true,  -- no background
 				dim_inactive = true,  -- fade inactive windows
+                transparent = false,
 				styles = {
 					comments  = "italic",
 					-- keywords  = "bold",

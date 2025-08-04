@@ -3,7 +3,7 @@ return {
   config = function()
     require("project_nvim").setup({
       detection_methods = { "pattern" },
-      patterns = { "*.sln", "*.csproj", ".git" },
+      patterns = { ".root", "*.sln", "*.csproj", ".git" },
       ignore_lsp = {}, -- make LSP respect project.nvim's root
     })
 

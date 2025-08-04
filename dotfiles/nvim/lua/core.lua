@@ -1,4 +1,5 @@
 vim.opt.expandtab = true
+vim.opt.termguicolors = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -33,7 +34,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set('n', '<leader>qb', function()
     vim.cmd('w')         -- Save current buffer
     vim.cmd('bd')        -- Close (delete) current buffer
-    vim.cmd('Telescope buffers')  -- Open Telescope buffer picker
+    vim.cmd('Telescope find_files')  -- Open Telescope buffer picker
 end, { desc = "Save & close buffer, then pick new one" })
 
 -- Stops whichkey checkhealth warning reports

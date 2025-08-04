@@ -61,13 +61,11 @@ odt2txt
 python
 ueberzugpp
 libreoffice
-starship
 network-manager-applet
 nm-connection-editor
 networkmanager
 networkmanager-openvpn
 openresolv
 eww-git
+lazygit
 discord
-interception-tools
-interception-caps2esc

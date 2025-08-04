@@ -17,6 +17,9 @@ vim.g.maplocalleader = " "
 -- Clear search highlight with Esc
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", "Clear search highlight")
 
+-- Find under cursor stop moving to next
+map("n", "*", "*N", "Find all at current word")
+
 -- Improved scrolling: center cursor
 map("n", "<C-d>", "<C-d>zz", "Scroll down and center")
 map("n", "<C-u>", "<C-u>zz", "Scroll up and center")
@@ -25,8 +28,12 @@ map("n", "<C-u>", "<C-u>zz", "Scroll up and center")
 map("n", "Y", "y$", "Yank to end of line")
 
 -- Insert Blank Line
-map("n", "<leader>o", "o<Esc>", "Insert Line Below")
-map("n", "<leader>O", "O<Esc>", "Insert Line Above")
+map("n", "<leader>o", "o<Esc>k", "Insert Line Below")
+map("n", "<leader>O", "O<Esc>j", "Insert Line Above")
+
+map("n", "<leader>ww", "<cmd>update<CR>", "Update buffer")
+map("n", "<leader>wq", "<cmd>wq<CR>", "Write Quit")
+map("n", "<leader>wa", "mC<cmd>bufdo update<CR>`C", "Save all edited buffers")
 
 ---------------------------------------------------------------------------------------------------
 -- Clipboard: use the + register
@@ -37,6 +44,7 @@ map("v", "<leader>y", '"+y', "[Y]ank to + register")
 
 -- Preserve default register when pasting in visual
 map("v", "p", "pgvy=", "Paste with autoindent")
+-- TODO
 
 -- Indent and reselect in visual mode
 map("v", "<", "<gv", "Indent left and reselect")
