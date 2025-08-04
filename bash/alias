@@ -4,11 +4,13 @@ alias la='ls --all'
 alias ll='ls --oneline --long --binary --group --mounts --total-size --no-time --git --git-repos --header --no-user --all'
 alias lt='ls --tree --hyperlink --level=3'
 alias bat='bat --color=always'
+alias cat='bat'
 alias ibat='sxiv -A 10'
 alias svim='sudoedit'
 
 #--AutoArch aliases
-alias toaa='cd ~/repos/autoarch'
+alias toaa='pushd ~/repos/autoarch'
+alias back='popd'
 alias pushaa='(toaa && git commit -a -m "$(date)" && git push)'
 
 #--Nvim aliases
@@ -27,10 +29,6 @@ alias ffn='nvim $(fzf -m --preview="bat --color=always {}")'
 
 #--Python Shortcuts
 alias py='python3'
-
-#--Ollama Auto Load Model
-alias phi='ollama run phi3.5'
-alias lam='ollama run llama3.2:3b'
 
 #--Set Project to Current Directory and then Return to it
 setproject() {

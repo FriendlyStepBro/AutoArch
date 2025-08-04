@@ -23,5 +23,6 @@ return {
     require("plugins.lazygit"), -- Added LazyGit integration
     require("plugins.project"),
     require("plugins.testrunner"),
+    require("plugins.multicursor"),
   -- To disable a plugin, comment out its require call:
 }
