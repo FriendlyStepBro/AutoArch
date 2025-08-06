@@ -1,9 +1,0 @@
-[Unit]
-Description=Udiskie automount daemon
-
-[Install]
-WantedBy=graphical-session.target
-
-[Service]
-ExecStart=/usr/bin/udiskie --automount --config ~/.config/udiskie/config.yml --notify 
-User=fsb

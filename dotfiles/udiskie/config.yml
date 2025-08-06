@@ -1,3 +1,0 @@
-mount_options:
-  '*':
-    mount_root: /home/fsb/disks

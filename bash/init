@@ -8,6 +8,9 @@
 [[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
 PS1='[\u@\h \W]\$ '
 
+eval "$(zoxide init bash --cmd cd)"
+eval "$(thefuck --alias)"
+
 # Sets up nvm and it's directory in the bash environment
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -23,10 +26,4 @@ if type -P oh-my-posh &> /dev/null; then
 	eval "$(oh-my-posh init bash --config $HOME/repos/autoarch/dotfiles/oh-my-posh/froczh.omp.json)"
 else
 	echo "Error: Oh-My-Posh not installed."
-fi
-#--Check if fzf and bat installed
-if type -P fzf &> /dev/null; then
-	eval "$(fzf --version)"
-else
-	echo "Error: FZF not installed."
 fi
