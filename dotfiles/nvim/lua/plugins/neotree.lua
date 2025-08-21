@@ -9,12 +9,12 @@ return {
     require("neo-tree").setup({
       window = {
         position = "right",
-        width = 32,
+        width = 38,
       },
       auto_refresh = true,       -- live updates enabled
       follow_current_file = {    -- automatically update explorer to follow the current file
         enabled = true,
-        leave_open = false,
+        leave_open = true,
       },
       filesystem = {
         filtered_items = {

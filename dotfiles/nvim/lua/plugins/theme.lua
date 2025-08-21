@@ -10,9 +10,8 @@ return {
 			palettes    = palettes,
 			specs       = specs,
 			options  = {
-				transparent  = true,  -- no background
+				transparent  = false,  -- no background
 				dim_inactive = true,  -- fade inactive windows
-                transparent = false,
 				styles = {
 					comments  = "italic",
 					-- keywords  = "bold",

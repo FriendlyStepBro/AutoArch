@@ -23,7 +23,7 @@ clear
 
 #--Check if Oh-My-Posh is installed and run it
 if type -P oh-my-posh &> /dev/null; then
-	eval "$(oh-my-posh init bash --config $HOME/repos/autoarch/dotfiles/oh-my-posh/froczh.omp.json)"
+	eval "$(oh-my-posh init bash --config $HOME/repos/autoarch/dotfiles/oh-my-posh/night-owl.omp.json)"
 else
 	echo "Error: Oh-My-Posh not installed."
 fi

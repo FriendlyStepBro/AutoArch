@@ -1,41 +1,31 @@
-vim.opt.expandtab = true
-vim.opt.termguicolors = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.scrolloff = 999
-vim.opt.mouse = ""
-vim.opt.timeoutlen = 1500
-vim.opt.relativenumber = true
-vim.opt.number = true
-vim.opt.cursorline = true
-vim.opt.showmode = false
-vim.opt.breakindent = true
-vim.opt.undofile = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.g.have_nerd_font = true
-vim.opt.signcolumn = 'yes'
-vim.opt.confirm = true
-vim.opt.inccommand = 'nosplit'
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+local opt = vim.opt
+local g = vim.g
 
--- Highlights text on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking (copying) text',
-    group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-})
+opt.number = true
+opt.numberwidth = 2
+opt.expandtab = true
+opt.termguicolors = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.scrolloff = 999
+opt.mouse = ""
+opt.timeoutlen = 1500
+opt.relativenumber = true
+opt.cursorline = true
+opt.showmode = false
+opt.breakindent = true
+opt.undofile = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.signcolumn = 'yes'
+opt.confirm = true
+opt.inccommand = 'nosplit'
+opt.list = true
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.whichwrap:append "hl"
+g.have_nerd_font = true
 
--- Allows for autosave and open buffer search (Telescope)
-vim.keymap.set('n', '<leader>qb', function()
-    vim.cmd('w')         -- Save current buffer
-    vim.cmd('bd')        -- Close (delete) current buffer
-    vim.cmd('Telescope find_files')  -- Open Telescope buffer picker
-end, { desc = "Save & close buffer, then pick new one" })
 
 -- Stops whichkey checkhealth warning reports
 -- only shows actual errors

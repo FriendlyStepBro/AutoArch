@@ -1,22 +1,44 @@
 return {
+  {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",
     build = ":TSUpdate",
+    lazy = false,
     config = function()
-        require("nvim-treesitter.configs").setup({
-            ensure_installed = { "c", "lua", "c_sharp", "bash", "hyprlang", "java", "javascript", "json", "kotlin", "llvm", "go", "gosum", "gomod", "gowork", "goctl", "gpg", "luadoc", "make", "markdown", "matlab", "nasm", "nginx", "passwd", "rust", "razor", "regex", "css", "csv", "cuda", "cpp", "cmake", "awk", "arduino", "asm", "dockerfile", "desktop", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "glsl", "html", "http", "ini", "xml", "powershell", "python", "sql", "ssh_config", "tmux", "todotxt", "toml", "typescript", "udev", "vim", "vimdoc", "wgsl", "yaml", "zig"},
-            auto_install = true,
-            highlight = {
-                enable = true,
-                disable = {},
-                additional_vim_regex_highlighting = true,
+      require("nvim-treesitter.configs").setup({
+        auto_install = true,
+        highlight = { enable = true, additional_vim_regex_highlighting = false },
+        indent = { enable = true },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
             },
-            indent = { enable = true },
-            playground = {
-                enable = true,
-                updatetime = 25,
-                persist_queries = false,
+          },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              ["]m"] = "@function.outer",
+              ["]]"] = "@class.outer",
             },
-        })
+            goto_previous_start = {
+              ["[m"] = "@function.outer",
+              ["[["] = "@class.outer",
+            },
+          },
+          swap = {
+            enable = true,
+            swap_next = { ["<leader>a"] = "@parameter.inner" },
+            swap_previous = { ["<leader>A"] = "@parameter.inner" },
+          },
+        },
+      })
     end,
+  },
+  { "nvim-treesitter/nvim-treesitter-textobjects" },
 }

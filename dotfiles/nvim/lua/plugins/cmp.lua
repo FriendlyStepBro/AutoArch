@@ -21,11 +21,11 @@ return {
                 format = require("nvim-highlight-colors").format,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<A-j>'] = cmp.mapping.select_next_item(), -- Alt+j: select next item
-                ['<A-k>'] = cmp.mapping.select_prev_item(), -- Alt+k: select previous item
+                ['<A-j>'] = cmp.mapping.select_next_item(),         -- Alt+j: select next item
+                ['<A-k>'] = cmp.mapping.select_prev_item(),         -- Alt+k: select previous item
                 ['<A-l>'] = cmp.mapping.confirm({ select = true }), -- Alt+l: confirm selection
-                ['<C-Space>'] = cmp.mapping.complete(),     -- Ctrl+Space: trigger completion
-                -- ['<Esc>'] = cmp.mapping.abort(),                   -- Escape to abort completion
+                ['<C-Space>'] = cmp.mapping.complete(),             -- Ctrl+Space: trigger completion
+                -- ['<Esc>'] = cmp.mapping.abort(),                 -- Escape to abort completion
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
