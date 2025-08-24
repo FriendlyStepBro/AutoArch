@@ -10,7 +10,10 @@ return {
         require("telescope").setup({
             defaults = {
                 prompt_prefix = "  ",
-                layout_config = { width = 0.75 },
+                layout_config = {
+                    width = 0.85,
+                    preview_width = 0.6
+                },
                 file_ignore_patterns = {},
                 path_display = { "smart" },
                 mappings = {
