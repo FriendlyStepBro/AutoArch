@@ -14,7 +14,10 @@ return {
                     width = 0.85,
                     preview_width = 0.6
                 },
-                file_ignore_patterns = {},
+                file_ignore_patterns = {
+                    "%.class",
+                    "%.zip",
+                },
                 path_display = { "smart" },
                 mappings = {
                     i = {

@@ -12,7 +12,7 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             automatic_installation = true,
-            ensure_installed = { "omnisharp", "pylsp" },
+            ensure_installed = { "clangd", "omnisharp", "pylsp" },
         })
 
         local lspconfig = require("lspconfig")
@@ -142,13 +142,41 @@ return {
             },
         })
 
+        lspconfig.lua_ls.setup({})
+
+        lspconfig.clangd.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            cmd = {
+                'clangd',
+                '--clangd-tidy',
+                '--offset-encoding=utf-16',
+                '--background-index',
+                '--fallback-style=LLVM',
+                -- '--compile-commands-dir=${workspaceFolder}',
+                -- '--header-insertion=never',
+                -- '--log=error',
+                -- '--pretty',
+                -- '--query-driver=/'
+            },
+            init_options = {
+                clandFileStatus = true,
+                usePlaceholders = true,
+                completeUnimported = true,
+            },
+            filetypes = { 'c' },
+            root_dir = require('lspconfig.util').root_pattern('compile_commands.json', '.root', '.git'),
+            single_file_support = true,
+        })
+
         -- Setup null-ls (formatter backend)
         local null_ls = require("null-ls")
         null_ls.setup({
             sources = {
                 null_ls.builtins.formatting.black, -- Python
                 null_ls.builtins.formatting.prettier, -- JS/TS/HTML/CSS/JSON
-                -- null_ls.builtins.formatting.csharpier,   -- C#
+                null_ls.builtins.formatting.csharpier,   -- C#
+                null_ls.builtins.formatting.clang_format,
             },
             on_attach = on_attach,
         })
