@@ -93,10 +93,48 @@ return {
             client.server_capabilities.hoverProvider = false
 
             -- Map keys to Jedi-provided features
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- Jedi documentation
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)            -- Jedi documentation
             vim.keymap.set("i", "<C-Space>", vim.lsp.buf.complete, opts) -- Jedi completions
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
         end
+
+        lspconfig.jdtls.setup({
+            cmd = {
+                "jdtls",
+                "--jvm-arg=-Xmx2G", -- Increase memory for large projects
+                "-configuration", vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls/config"),
+                "-data", vim.fn.expand("~/workspace/" ..
+                vim.fn.fnamemodify(lspconfig.util.root_pattern("mvnw", "gradlew", "pom.xml", ".git")(), ":p:h:t")),
+            },
+            root_dir = lspconfig.util.root_pattern("mvnw", "gradlew", "pom.xml", ".git"),
+            settings = {
+                java = {
+                    configuration = {
+                        runtimes = {
+                            {
+                                name = "JavaSE-21",
+                                path = "/usr/lib/jvm/amazon-corretto-21", -- AWS Corretto 21 path
+                                default = true,
+                            },
+                        },
+                    },
+                    format = {
+                        enabled = true,
+                        settings = {
+                            url = vim.fn.expand("~/.config/nvim/eclipse-formatter.xml"), -- Optional: Custom formatter
+                        },
+                    },
+                    autobuild = { enabled = true },
+                    maven = { downloadSources = true },
+                    signatureHelp = { enabled = true },
+                    contentProvider = { preferred = "fernflower" }, -- For decompilation
+                },
+            },
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { "java" },
+            single_file_support = true,
+        })
 
         lspconfig.pylsp.setup({
             on_attach = pylsp_on_attach,
@@ -142,7 +180,7 @@ return {
             },
         })
 
-        lspconfig.lua_ls.setup({})
+        lspconfig.lua_ls.setup({ on_attach = on_attach, capabilities = capabilities })
 
         lspconfig.clangd.setup({
             on_attach = on_attach,
@@ -169,13 +207,14 @@ return {
             single_file_support = true,
         })
 
+
         -- Setup null-ls (formatter backend)
         local null_ls = require("null-ls")
         null_ls.setup({
             sources = {
-                null_ls.builtins.formatting.black, -- Python
-                null_ls.builtins.formatting.prettier, -- JS/TS/HTML/CSS/JSON
-                null_ls.builtins.formatting.csharpier,   -- C#
+                null_ls.builtins.formatting.black,     -- Python
+                null_ls.builtins.formatting.prettier,  -- JS/TS/HTML/CSS/JSON
+                null_ls.builtins.formatting.csharpier, -- C#
                 null_ls.builtins.formatting.clang_format,
             },
             on_attach = on_attach,

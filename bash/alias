@@ -25,7 +25,7 @@ alias omp='oh-my-posh'
 alias rld='source ~/.bashrc'
 
 #--FZF Aliases
-alias fzf='fzf -m --preview="bat"'
+alias fzf='fzf -m --preview="cat"'
 alias fzfn='nvim $(fzf)'
 
 #--Python Shortcuts
