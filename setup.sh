@@ -21,12 +21,6 @@ while IFS= read -r package; do
 	fi
 done < packages
 
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-cd ../
-rm -rf yay
-
 for package in "${aur_packages[@]}"; do
 	yay -S --noconfirm "$package"
 done

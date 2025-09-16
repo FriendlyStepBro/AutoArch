@@ -2,19 +2,6 @@ base-devel
 linux-headers
 dkms
 
-hyprland
-hyprlock
-hypridle
-hyprshot
-nwg-look
-eww-git
-dracula-gtk-theme-full
-xdg-desktop-portal-hyprland
-
-hyprpaper
-wofi
-waybar
-
 git
 delta
 tmux
